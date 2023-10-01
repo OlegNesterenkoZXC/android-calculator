@@ -139,6 +139,7 @@
         android:gravity="center"
         android:hint="Число"
         android:inputType="number|numberDecimal|numberSigned"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/operation"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,6 +156,7 @@
         android:gravity="center"
         android:hint="Число"
         android:inputType="number|numberDecimal|numberSigned"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/operation"
         app:layout_constraintTop_toTopOf="@+id/operation" />
@@ -196,7 +198,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

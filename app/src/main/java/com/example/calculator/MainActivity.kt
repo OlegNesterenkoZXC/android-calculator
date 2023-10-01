@@ -1,13 +1,10 @@
 package com.example.calculator
 
-import android.media.VolumeShaper.Operation
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -18,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var input2: EditText
     private lateinit var operation: TextView
     private lateinit var result: TextView
-    private var action: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         operation = findViewById(R.id.operation)
 
         operation.doAfterTextChanged {
-            if(!operation.text.isEmpty()) {
+            if(operation.text.isNotEmpty()) {
                 operation.error = null
             }
             setZeroDivisionError()
@@ -111,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             if(input.text.isNotEmpty()) {
                 var s = input.text.toString()
                 input.run {
-                    var i = selectionStart
+                    val i = selectionStart
                     s = s.substring(0, i - 1) + s.substring(i)
                     text.clear()
                     text.append(s)
@@ -133,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 swapInputAndResult()
                 operation.text = btnValue
             } else {
-                var res = calcRes(
+                val res = calcRes(
                     input1.text.toString().toDouble(),
                     input2.text.toString().toDouble(),
                     operation.text.toString()
@@ -144,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                     text.append(res)
                 }
                 input2.text.clear()
+                result.text = ""
             }
 
             val input1IsEmpty: Boolean = input1.text.isEmpty()
@@ -176,7 +173,7 @@ class MainActivity : AppCompatActivity() {
                 operation.error = "Не выбрана операция"
             }
             if(!input1IsEmpty && !input2IsEmpty && !operationIsEmpty && !checkZeroDivision()) {
-                var res = calcRes(
+                val res = calcRes(
                     input1.text.toString().toDouble(),
                     input2.text.toString().toDouble(),
                     operation.text.toString()
@@ -195,7 +192,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calcRes(a: Double, b: Double, operation: String): String {
-        var res: Double = when(operation) {
+        val res: Double = when(operation) {
             "+" -> a + b
             "-" -> a - b
             "*" -> a * b
